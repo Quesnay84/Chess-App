@@ -27,6 +27,8 @@ public enum Piece {
         return setWhite.contains(this);
     }
 
+
+
     public boolean isPawn(){
         return this == WhitePown || this == BlackPown;
     }

@@ -7,6 +7,17 @@ public enum File {
     File(char symbol){
         this.symbol = symbol;
     }
+
+    static File from(char character){
+        for(File f : File.values()){
+            if(f.symbol == character){
+                return f;
+            }
+        }
+        return null;
+    }
+
+
     public char getSymbol(){
         return symbol;
     }

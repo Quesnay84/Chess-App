@@ -8,7 +8,18 @@ public enum Rank {
     Rank(int value) {
         this.value = value;
     }
-    public int getVelue() {
+
+    static Rank from(char c) {
+        int realNumber = Character.getNumericValue(c);
+        for(Rank r : Rank.values()){
+            if(r.value() == realNumber){
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public int value() {
         return value;
     }
 
