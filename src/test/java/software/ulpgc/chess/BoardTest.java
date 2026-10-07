@@ -1,11 +1,14 @@
 package software.ulpgc.chess;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class MapBoardTest {
+class BoardTest {
 
-    private final Board board = Board.inicial();
+    private final Board board = MapBoard.inicial();
 
     @Test
     void returns_the_piece_on_an_occupied_square() {
@@ -25,7 +28,7 @@ class MapBoardTest {
 
     @Test
     void moving_a_piece_leaves_the_original_board_untouched() {
-        Board moved = board.move(Square.at("e2"), Square.at("e4"));
+        Board moved = board.applyMove(Move.of("e2", "e4"));
 
         assertEquals(Piece.WhitePawn, moved.pieceAt(Square.at("e4")));
         assertEquals(Piece.WhitePawn, board.pieceAt(Square.at("e2")));

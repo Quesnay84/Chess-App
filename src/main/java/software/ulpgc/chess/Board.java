@@ -1,14 +1,17 @@
 package software.ulpgc.chess;
 
 public interface Board {
+
+    Board applyMove(Move move);
+
     Piece pieceAt(Square square);
 
-    default Piece pieceAt(File file, Rank rank){
+    default Piece pieceAt(File file, Rank rank) {
         return pieceAt(new Square(file, rank));
     }
-    Board move(Square from, Square to);
 
-    static Board inicial(){
-        return MapBoard.inicial();
+    default Piece pieceAt(String square) {
+        return pieceAt(Square.at(square));
     }
+
 }

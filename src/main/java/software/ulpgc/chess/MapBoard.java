@@ -3,34 +3,26 @@ package software.ulpgc.chess;
 import java.util.HashMap;
 import java.util.Map;
 
-public record MapBoard(Map<Square, Piece> pieces) implements Board {
+record MapBoard(Map<Square, Piece> pieces) implements Board {
     public MapBoard {
         pieces = Map.copyOf(pieces);
     }
 
-    public Piece pieceAt(File file, Rank rank){
-        return pieceAt(new Square(file, rank));
-    }
     @Override
     public Piece pieceAt(Square square){
         return pieces.get(square);
     }
 
-    public Piece pieceAt(String square){
-        return pieceAt(Square.at(square));
-    }
-
     @Override
-    public Board move(Square from, Square to){
-        return new MapBoard(piecesAfterMovement(from, to));
+    public Board applyMove(Move move){
+        return new MapBoard(piecesAfterMovement(move));
     }
 
-    private Map<Square, Piece> piecesAfterMovement(Square from, Square to){
+    private Map<Square, Piece> piecesAfterMovement(Move move){
         Map<Square, Piece> newMap = new HashMap<>(pieces);
-        newMap.put(to, newMap.remove(from));
+        newMap.put(move.to(), newMap.remove(move.from()));
         return newMap;
     }
-
 
     static Board inicial() {
         Map<Square, Piece> pieces = Map.ofEntries(
@@ -72,5 +64,4 @@ public record MapBoard(Map<Square, Piece> pieces) implements Board {
         );
         return new MapBoard(pieces);
     }
-
 }

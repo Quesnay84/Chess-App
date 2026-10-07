@@ -20,7 +20,7 @@ public enum Piece {
 
     private static final Set<Piece> setWhite = Collections.unmodifiableSet(EnumSet.of(WhitePawn, WhiteRook, WhiteKnight, WhiteQueen, WhiteKing, WhiteBishop));
 
-    Color color(){
+    public Color color(){
         return isWhite() ? Color.White: Color.Black;
     }
     private boolean isWhite(){

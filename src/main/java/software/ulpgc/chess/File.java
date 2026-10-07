@@ -16,8 +16,4 @@ public enum File {
         }
         return null;
     }
-
-    public char getSymbol(){
-        return symbol;
-    }
 }
