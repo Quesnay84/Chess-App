@@ -3,7 +3,7 @@ package software.ulpgc.chess;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BoardTest {
+class MapBoardTest {
 
     private final Board board = Board.inicial();
 
@@ -19,17 +19,15 @@ class BoardTest {
     }
 
     @Test
-    void all_overloads_give_the_same_result() {
-        Piece bySquare = board.pieceAt(Square.at("d1"));
+    void both_overloads_give_the_same_result() {
+        assertEquals(board.pieceAt(Square.at("d1")), board.pieceAt(File.D, Rank.R1));
+    }
 
-        assertEquals(bySquare, board.pieceAt("d1"));
-        assertEquals(bySquare, board.pieceAt(File.D, Rank.R1));
+    @Test
+    void moving_a_piece_leaves_the_original_board_untouched() {
+        Board moved = board.move(Square.at("e2"), Square.at("e4"));
+
+        assertEquals(Piece.WhitePawn, moved.pieceAt(Square.at("e4")));
+        assertEquals(Piece.WhitePawn, board.pieceAt(Square.at("e2")));
     }
 }
-
-    /*@Test
-    void rejects_an_invalid_square() {
-        assertThrows(IllegalArgumentException.class, () -> board.pieceAt("z9"));
-    }
-
-*/
