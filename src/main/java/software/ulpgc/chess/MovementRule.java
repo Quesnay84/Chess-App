@@ -17,6 +17,4 @@ public interface MovementRule{
     default boolean canLandOn(Board board, Move move) {
         return isEmpty(board, move.to()) || isEnemy(board, move);
     }
-
-
 }
