@@ -1,10 +1,21 @@
 package software.ulpgc.chess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface MovementRule{
 
-    List<Move> moveFrom(Board board, Square from);
+   boolean allows(Move move);
+
+    default List<Move> moveFrom(Board board, Square from){
+        List<Move> moves = new ArrayList<>();
+        for(Square to: from.allSquares()){
+            Move move = new Move(from, to);
+            if(!allows(move) || !canLandOn(board,move)) continue;
+            moves.add(move);
+        }
+        return List.copyOf(moves);
+    }
 
     default boolean isEmpty(Board board, Square to) {
         return board.pieceAt(to) == null;
