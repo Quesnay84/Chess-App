@@ -8,5 +8,6 @@ public class Main {
         Square a = new Square(A,R1);
         Square b = new Square(A,R1);
 
+
     }
 }
