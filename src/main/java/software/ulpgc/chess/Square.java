@@ -22,6 +22,10 @@ public record Square(File file, Rank rank) {
         return List.copyOf(squares);
     }
 
+    public Square squareShift(int files, int ranks){
+        return new Square(File.values()[file.ordinal() + files], Rank.values()[rank.ordinal() + ranks]);
+    }
+
 
 
 }
